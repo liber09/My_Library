@@ -3,15 +3,17 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Library library = new Library();
-        int usersChoice;
         Scanner input = new Scanner(System.in);
-        ArrayList<String> menu = new ArrayList();
+        ArrayList<String> menu = new ArrayList<String>();
+        int usersChoice;
+
         menu.add("1.Lägg till en bok i biblioteket");
         menu.add("2.Sök efter en bok");
         menu.add("3.Lista alla tillgängliga böcker");
         menu.add("4.Återlämna en bok");
         menu.add("5.Avsluta");
         System.out.println("Välkommen till biblioteket!");
+
         do {
             for (String menuOption:menu)
             {
@@ -19,6 +21,7 @@ public class Main {
             }
             usersChoice = input.nextInt();
             input.nextLine();
+
             switch(usersChoice){
                 case 1:
                     System.out.println("Ange bokens namn: ");
@@ -67,7 +70,7 @@ public class Main {
                     System.out.println("Vilken bok vill du lämna tillbaka?");
                     String bookToReturn = input.nextLine();
                     Book usersBook = library.searchBook(bookToReturn);
-                    if(usersBook != null && usersBook.available == false){
+                    if(usersBook != null && !usersBook.available){
                         library.returnBook(usersBook);
                         System.out.println("Tack för din retur!");
                     }
